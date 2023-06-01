@@ -1,103 +1,96 @@
 package myapp;
 
-// 코드 본문에서 사용할 클래스가 어떤 패키지인지 지정한다.
 import java.util.Scanner;
+
+//흐름제어문
 public class App {
-    public static void main(String[] args) {
-      System.out.println("나의 목록 관리 시스템");
-      System.out.println("-----------------------------------"); 
+  public static void main(String[] args) {
+    printTitle();
 
-     // 키보드 스캐너 준비
-      Scanner scanner = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
-      System.out.print("번호? : ");
-      int no1 =scanner.nextInt();
+    final int MAX_SIZE = 100;
+    int userId = 1;
+    int length = 0;
 
-      System.out.print("이름? : ");
-      String name1 = scanner.next();
+    int[] no = new int[MAX_SIZE];
+    String[] name = new String[MAX_SIZE];
+    String[] email = new String[MAX_SIZE];
+    String[] password = new String[MAX_SIZE];
+    char[] gender = new char[MAX_SIZE];
 
-      System.out.print("나이? : ");
-      int age1 = scanner.nextInt();
-
-      System.out.print("재직 여부? : ");
-      boolean working1 = scanner.nextBoolean();
-
-      System.out.print("성별? : ");
-      String str = scanner.next();
-      char gender1 = str.charAt(0);
-
-      System.out.print("좌우시력? : ");
-      float leftEye1 = scanner.nextFloat();
-      float rightEye1 = scanner.nextFloat();
-  
-//
-
-      System.out.print("번호? : ");
-      int no2 =scanner.nextInt();
-  
-      System.out.print("이름? : ");
-      String name2 = scanner.next();
-  
-      System.out.print("나이? : ");
-      int age2 = scanner.nextInt();
-  
-      System.out.print("재직 여부? : ");
-      boolean working2 = scanner.nextBoolean();
-  
-      System.out.print("성별? : ");
-      str = scanner.next();
-      char gender2 = str.charAt(0);
-  
-      System.out.print("좌우시력? : ");
-      float leftEye2 = scanner.nextFloat();
-      float rightEye2 = scanner.nextFloat();
-    
-//
-
-      System.out.print("번호? : ");
-      int no3 =scanner.nextInt();
-
-      System.out.print("이름? : ");
-      String name3 = scanner.next();
-
-      System.out.print("나이? : ");
-      int age3 = scanner.nextInt();
-
-      System.out.print("재직 여부? : ");
-      boolean working3 = scanner.nextBoolean();
-
-      System.out.print("성별? : ");
-      str = scanner.next();
-      char gender3 = str.charAt(0);
-
-      System.out.print("좌우시력? : ");
-      float leftEye3 = scanner.nextFloat();
-      float rightEye3 = scanner.nextFloat();
-  
-
-      System.out.println("---------------------------------");
-
-      System.out.printf("번호 : %d\n", no1);
-      System.out.printf("이름: %s\n", name1);            //s : 문자열
-      System.out.printf("나이:\n" , age1);
-      System.out.printf("재직자: %b\n", working1);            //출력후 줄바꿈, \n : escape character
-      System.out.printf("성벌(남자(M), 여자(W)): %c\n", gender1);          // c: 문자(문자열이랑 다름)
-      System.out.printf("좌우시력: %f,%f\n", leftEye1, rightEye1);          
-//
-System.out.printf("번호 : %d\n", no2);
-      System.out.printf("이름: %s\n", name2);            //s : 문자열
-      System.out.printf("나이:\n" , age2);
-      System.out.printf("재직자: %b\n", working2);            //출력후 줄바꿈, \n : escape character
-      System.out.printf("성벌(남자(M), 여자(W)): %c\n", gender2);          // c: 문자(문자열이랑 다름)
-      System.out.printf("좌우시력: %f,%f\n", leftEye2, rightEye2);          
-//
-System.out.printf("번호 : %d\n", no3);
-      System.out.printf("이름: %s\n", name3);            //s : 문자열
-      System.out.printf("나이:\n" , age3);
-      System.out.printf("재직자: %b\n", working3);            //출력후 줄바꿈, \n : escape character
-      System.out.printf("성벌(남자(M), 여자(W)): %c\n", gender3);          // c: 문자(문자열이랑 다름)
-      System.out.printf("좌우시력: %f,%f\n", leftEye3, rightEye3);          
-
-      scanner.close();
+    printTitle();
+    for (int i = 0; i < MAX_SIZE; i++) {
+      inputMember(scanner, i, name, email, password, gender, no, userId++);
+      length++;
+      if (!promptContinue(scanner)) {
+        break;
+      }
     }
+    printMembers(length, no, name, email, gender);
+    
+    scanner.close();
   }
+
+  static void printTitle() {
+    System.out.println("나의 목록 관리 시스템");
+    System.out.println("----------------------------------");
+  }
+
+  static void inputMember(Scanner scanner, int i,
+      String[] name, String[] email, String[] password, char[] gender, int[] no, int userId) {
+
+    System.out.print("이름? ");
+    name[i] = scanner.next();
+
+    System.out.print("이메일? ");
+    email[i] = scanner.next();
+
+    System.out.print("암호? ");
+    password[i] = scanner.next();
+
+    loop: while (true) {
+      System.out.println("성별: ");
+      System.out.println("  1. 남자");
+      System.out.println("  2. 여자");
+      System.out.print("> ");
+      String menuNo = scanner.next();
+      scanner.nextLine(); // 입력 값(token)을 읽고 난 후에 남아 있는 줄바꿈 코드를 제거한다.
+
+      switch (menuNo) {
+        case "1":
+          gender[i] = 'M';
+          break loop;
+        case "2":
+          gender[i] = 'W';
+          break loop;
+        default:
+          System.out.println("무효한 번호입니다.");
+      }
+    }
+
+    no[i] = userId++;
+  }
+
+  static boolean promptContinue(Scanner scanner) {
+    System.out.print("계속 하시겠습니까?(Y/n) ");
+    String response = scanner.nextLine();
+    if (!response.equals("") && !response.equalsIgnoreCase("Y")) {
+      return false;
+    }
+    return true;
+  }
+
+  static void printMembers(int length, int[] no, String[] name, String[] email, char[] gender) {
+    System.out.println("---------------------------------------");
+
+    System.out.println("번호, 이름, 이메일, 성별");
+    System.out.println("---------------------------------------");
+
+    for (int i = 0; i < length; i++) {
+      System.out.printf("%d, %s, %s, %c\n", no[i], name[i], email[i], gender[i]);
+    }
+    
+  }
+  
+}
