@@ -84,6 +84,7 @@ public class BoardHandler {
 
 
   public static void updateBoard() {
+
     // String memberNo = Prompt.inputString("번호? ");
     // for (int i = 0; i < length; i++) {
     // Board m = boards[i];
