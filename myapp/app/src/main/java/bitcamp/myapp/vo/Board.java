@@ -4,7 +4,6 @@ public class Board {
 
   private static int boardNo = 1;
 
-
   private int no;
   private String title;
   private String content;
@@ -12,7 +11,6 @@ public class Board {
   private String password;
   private int viewCount;
   private long createdDate;
-
 
   public Board() {
     this.no = boardNo++;
