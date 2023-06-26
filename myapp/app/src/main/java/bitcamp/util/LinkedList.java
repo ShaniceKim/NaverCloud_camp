@@ -159,7 +159,7 @@ public class LinkedList<E> implements List<E> {
     Node<E> cursor = this.head;
 
     for (int i = 0; i < index; i++) {
-      prev = cursor; // 다음 노드로 이동하기 전에 현재 커서가 가리키는 노드를 prev에 보관한다.
+      prev = cursor; // 다음 노드로 이동하기 전에 현재 커서가 가리키는 노드를 prev 에 보관한다.
       cursor = cursor.next; // 커서를 다음 노드로 이동시킨다.
     }
 
@@ -183,6 +183,7 @@ public class LinkedList<E> implements List<E> {
 
     return old;
   }
+
 
   @Override
   public int size() {
