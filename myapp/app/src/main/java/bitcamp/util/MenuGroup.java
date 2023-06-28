@@ -1,5 +1,7 @@
 package bitcamp.util;
 
+import java.util.ArrayList;
+
 public class MenuGroup extends Menu {
 
   ArrayList childs;

@@ -1,5 +1,7 @@
 package bitcamp.util;
 
+import java.util.ArrayList;
+
 public class Menu {
 
   private String title;
