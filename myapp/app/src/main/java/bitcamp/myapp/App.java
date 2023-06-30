@@ -48,8 +48,9 @@ public class App {
   }
 
   static void printTitle() {
-    System.out.println("나의 목록 관리 시스템");
-    System.out.println("----------------------------------");
+    System.out.println("");
+    System.out.println("< 미용실 회원 관리 시스템 >");
+    System.out.println("");
   }
 
   public void execute() {
@@ -73,6 +74,8 @@ public class App {
     saveCsv("board.csv", boardList);
     saveCsv("reading.csv", readingList);
   }
+
+
 
   private void prepareMenu() {
     MenuGroup memberMenu = new MenuGroup("회원");
@@ -107,7 +110,7 @@ public class App {
   }
 
   @SuppressWarnings("unchecked")
-  private <T> void loadCsv(String filename, List<T> list, Class<T> clazz) {
+  private <T extends CsvObject> void loadCsv(String filename, List<T> list, Class<T> clazz) {
     try {
       Method factoryMethod = clazz.getDeclaredMethod("fromCsv", String.class);
 
@@ -121,17 +124,13 @@ public class App {
         // list.add(Member.fromCsv(line)); // 직접 스태틱 메서드 호출
       }
 
-      if (list.size() > 0) {
-        // 데이터를 로딩한 이후에 추가할 회원의 번호를 설정한다.
-        Member.userId = memberList.get(memberList.size() - 1).getNo() + 1;
-      }
-
       in.close();
 
     } catch (Exception e) {
       System.out.println(filename + " 파일을 읽는 중 오류 발생!");
     }
   }
+
 
   private void saveCsv(String filename, List<? extends CsvObject> list) {
     try {
