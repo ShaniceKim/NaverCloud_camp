@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Member implements Serializable, CsvObject {
   private static final long serialVersionUID = 1L;
 
+
   public static int userId = 1;
 
   public static final char MALE = 'M';

@@ -1,5 +1,6 @@
 package bitcamp.myapp.vo;
 
+
 import java.io.Serializable;
 
 public class Board implements Serializable, CsvObject {
