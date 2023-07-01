@@ -10,11 +10,16 @@ public class Member implements Serializable, CsvObject {
   public static final char MALE = 'M';
   public static final char FEMALE = 'W';
 
+
+  public static final char EXIST = '1';
+  public static final char NON_EXIST = '2';
+
   private int no;
   private String name;
-  private String email;
+  private String phoneNo;
   private String password;
   private char gender;
+  private char history;
 
   public Member() {
     this.no = userId++;
@@ -29,7 +34,7 @@ public class Member implements Serializable, CsvObject {
 
     Member member = new Member(Integer.parseInt(values[0]));
     member.setName(values[1]);
-    member.setEmail(values[2]);
+    member.setPhoneNo(values[2]);
     member.setPassword(values[3]);
     member.setGender(values[4].charAt(0));
 
@@ -42,7 +47,7 @@ public class Member implements Serializable, CsvObject {
 
   @Override
   public String toCsvString() {
-    return String.format("%d,%s,%s,%s,%c", this.getNo(), this.getName(), this.getEmail(),
+    return String.format("%d,%s,%s,%s,%c", this.getNo(), this.getName(), this.getPhoneNo(),
         this.getPassword(), this.getGender());
   }
 
@@ -77,12 +82,12 @@ public class Member implements Serializable, CsvObject {
     this.name = name;
   }
 
-  public String getEmail() {
-    return email;
+  public String getPhoneNo() {
+    return phoneNo;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setPhoneNo(String phoneNo) {
+    this.phoneNo = phoneNo;
   }
 
   public String getPassword() {
@@ -99,6 +104,14 @@ public class Member implements Serializable, CsvObject {
 
   public void setGender(char gender) {
     this.gender = gender;
+  }
+
+  public char getHistory() {
+    return history;
+  }
+
+  public void setHistory(char history) {
+    this.history = history;
   }
 
 }
