@@ -90,16 +90,16 @@ public class App {
     boardMenu.add(new Menu("리뷰)등록", new BoardAddListener(boardList)));
     boardMenu.add(new Menu("리뷰)목록", new BoardListListener(boardList)));
     boardMenu.add(new Menu("리뷰)조회", new BoardDetailListener(boardList)));
-    boardMenu.add(new Menu("리뷰)변경", new BoardUpdateListener(boardList)));
+    boardMenu.add(new Menu("리뷰)수정", new BoardUpdateListener(boardList)));
     boardMenu.add(new Menu("리뷰)삭제", new BoardDeleteListener(boardList)));
     mainMenu.add(boardMenu);
 
-    MenuGroup readingMenu = new MenuGroup("예약");
-    readingMenu.add(new Menu("예약)등록", new BoardAddListener(readingList)));
-    readingMenu.add(new Menu("예약)목록", new BoardListListener(readingList)));
-    readingMenu.add(new Menu("예약)조회", new BoardDetailListener(readingList)));
-    readingMenu.add(new Menu("예약)변경", new BoardUpdateListener(readingList)));
-    readingMenu.add(new Menu("예약)취소", new BoardDeleteListener(readingList)));
+    MenuGroup readingMenu = new MenuGroup("건의 사항");
+    readingMenu.add(new Menu("건의 사항)등록", new BoardAddListener(readingList)));
+    readingMenu.add(new Menu("건의 사항)목록", new BoardListListener(readingList)));
+    readingMenu.add(new Menu("건의 사항)조회", new BoardDetailListener(readingList)));
+    readingMenu.add(new Menu("건의 사항)수정", new BoardUpdateListener(readingList)));
+    readingMenu.add(new Menu("건의 사항)취소", new BoardDeleteListener(readingList)));
     mainMenu.add(readingMenu);
 
     Menu helloMenu = new Menu("안녕!");

@@ -14,6 +14,7 @@ public class Board implements Serializable, CsvObject {
   private String password;
   private int viewCount;
   private long createdDate;
+  private String name;
 
   public Board() {
     this.no = boardNo++;
@@ -121,6 +122,16 @@ public class Board implements Serializable, CsvObject {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+
+
   }
 
 
