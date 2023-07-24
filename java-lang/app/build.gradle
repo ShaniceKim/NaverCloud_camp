@@ -31,7 +31,7 @@ tasks.withType(JavaCompile) {
 // 그러나 이클립스 설정 파일을 만드는 과정에서 
 // 각 소스 경로에 대한 기본 출력 폴더가 bin/main 으로 따로 설정되어 있다.
 // 그래서 실제 자바 소스 파일을 컴파일하면 bin/default 가 아니라 
-// bin/main 폴더에 .class 파일이 저장된다.
+// bin/main 폴더에 .class 파일이 저장된다.jhkljhnkliojhugnjklhuygfrtdvbmuy7rt5desxfkl'[;]
 // 
 /*
 eclipse {
