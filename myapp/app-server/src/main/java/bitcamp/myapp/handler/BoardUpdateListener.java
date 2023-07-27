@@ -24,7 +24,7 @@ public class BoardUpdateListener implements ActionListener {
 
     Board board = boardDao.findBy(boardNo);
     if (board == null) {
-      prompt.println("해당 번호의 게시글이 없습니다!");
+      prompt.println("해당 번호의 리뷰가 없습니다!");
       return;
     }
 

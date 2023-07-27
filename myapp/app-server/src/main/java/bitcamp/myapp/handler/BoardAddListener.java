@@ -21,8 +21,8 @@ public class BoardAddListener implements ActionListener {
   @Override
   public void service(BreadcrumbPrompt prompt) throws IOException {
     Board board = new Board();
-    board.setTitle(prompt.inputString("제목? "));
-    board.setContent(prompt.inputString("내용? "));
+    board.setTitle(prompt.inputString("리뷰 제목? "));
+    board.setContent(prompt.inputString("리뷰 내용? "));
     board.setWriter((Member) prompt.getAttribute("loginUser"));
 
     try {
