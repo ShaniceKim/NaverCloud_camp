@@ -334,6 +334,157 @@ https://whaleon.us/o/CSrtk1/001aa759f29c46b985e32dd8562f594a
     - 주현욱, 서재운, 한태영, 김성주, 김세연
     - 오동현(예비군)
 
+### 31일(7/05,수)
+
+- 프로젝트 실습
+  - 36. 데이터의 등록, 조회, 수정, 삭제 기능을 캡슐화하기 : DAO 객체 도입
+  - 37. 네트워킹을 이용하여 데이터 공유하기 : Client/Server 아키텍처로 전환
+
+### 32일(7/06,목)
+
+- 자바 프로그래밍(com.eomcs.net)
+  - Socket, ServerSocket 사용법
+  - 데이터 전송 및 수신 방법
+- 프로젝트 실습
+  - 37. 네트워킹을 이용하여 데이터 공유하기 : Client/Server 아키텍처로 전환(계속)
+
+### 33일(7/07,금)
+
+- 자바 프로그래밍(com.eomcs.reflect)
+  - GoF의 프록시 패턴의 원리 이해 및 적용
+  - 분산 컴퓨팅의 개념과 주요 기술 이해
+- 프로젝트 실습
+  - 38. DAO 프록시 객체를 자동 생성하기
+
+### 34일(7/10,월)
+
+- 자바 프로그래밍(com.eomcs.exception)
+  - 예외 처리 문법을 사용하는 방법
+- 프로젝트 실습
+  - 39. Reflection API를 활용하여 DAO 메서드 호출을 자동화하기
+
+### 35일(7/11,화)
+
+- 자바 프로그래밍
+  - 네트워킹 프로그래밍(com.eomcs.net)
+  - character stream API 사용법(com.eomcs.io.ex3)
+- 프로젝트 실습
+  - 40. 예외 처리하기
+  - 41. 여러 클라이언트의 요청을 순차적으로 처리하기: Stateful 방식
+  - 42. 여러 클라이언트의 요청을 순차적으로 처리하기: Stateless 방식
+
+### 36일(7/12,수)
+
+- 자바 프로그래밍
+- 프로젝트 실습
+  - 43. 여러 클라이언트 요청을 동시에 처리하기: Thread 적용
+
+### 37일(7/13,목)
+
+- 자바 프로그래밍
+  - 스레드 프로그래밍(com.eomcs.concurrent.ex1 ~ ex4)
+- 멀티태스킹의 메커니즘 이해
+  - 프로세스 스케쥴링: Round Robin 방식, Priority + Aging 방식
+  - 컨텍스트 스위칭 개념
+  - 프로세스 복제(fork)방식과 스레드 방식 비교
+- 스레드의 구동원리와 사용법
+  - 스레드의 라이프사이클 이해
+  - Thread 클래스와 Runnable 인터페이스 사용법
+- 프로젝트 실습
+
+### 38일(7/14,금)
+
+- 자바 프로그래밍
+  - 스레드 프로그래밍(com.eomcs.concurrent.ex5 ~ ex6)
+- 멀티태스킹의 메커니즘 이해
+  - 임계영역(Critical Region, Critical Section): 세마포어(Semaphore)와 뮤텍스(Mutex)
+- 프로젝트 실습
+  - 44. 스레드 재사용하기 : 스레드풀(thread pool) 구현
+  
+### 39일(7/17,월)
+
+- 자바 프로그래밍
+  - 스레드 프로그래밍(com.eomcs.concurrent.ex7)
+    - 스레드풀 사용법
+  - JDBC 프로그래밍(com.eomcs.jdbc)
+    - MySQL 로컬 설치 및 설정
+    - 사용자 추가/삭제
+    - 데이터베이스 추가/삭제
+    - 사용자, 데이터베이스, 테이블 정보 조회
+    - DBMS와 DBMS 클라이언트와 관계 
+- 프로젝트 실습
+  - 45. 스레드 재사용하기 : 자바에서 제공하는 스레드풀(thread pool) 사용
+
+### 40일(7/18,화)
+
+- 자바 프로그래밍
+  - JDBC 프로그래밍(com.eomcs.jdbc)
+    - DBMS API와 ODBC API
+    - JDBC API와 JDBC 드라이버
+    - SQL - DDL 사용법
+
+### 41일(7/19,수)
+
+- 자바 프로그래밍
+  - JDBC 프로그래밍(com.eomcs.jdbc)
+    - SQL - DML 사용법
+    - SQL - DQL 사용법
+  
+
+### 42일(7/20,목)
+
+- 자바 프로그래밍
+  - JDBC 프로그래밍(com.eomcs.jdbc)
+    - SQL - DQL 사용법: 조인, 서브쿼리, 그룹 
+
+### 43일(7/21,금)
+
+- 자바 프로그래밍
+  - 자바 코딩 문제집(001)
+    - 제네릭, 중첩클래스, Map.compute(), BiFunction 인터페이스 사용법
+  - JDBC 프로그래밍(com.eomcs.jdbc)
+    - JDBC API와 Driver 개념
+    - JDBC 드라이버 로딩 원리
+    - select/insert/update/delete 프로그래밍
+- 프로젝트 실습
+  - 46. DBMS 도입하기
+
+### 44일(7/24,월)
+
+- 자바 프로그래밍
+  - JDBC 프로그래밍(com.eomcs.jdbc)
+    - PreparedStatement 사용법
+- 프로젝트 실습
+  - 46. DBMS 도입하기(계속)
+  - 47. SQL 삽입 공격 차단하기
+  - 48. 외부키(Foreign Key) 사용하기
+  - 49. 로그인 적용하기
+
+### 45일(7/25,화)
+
+- 자바 프로그래밍
+- 프로젝트 실습
+  - 50. Application Server 아키텍터로 전환하기
+
+### 46일(7/26,수)
+
+- 자바 프로그래밍
+- 프로젝트 실습
+  - 51. DB 커넥션 풀을 이용한 Connection 재사용하기
+
+### 47일(7/27,목)
+
+- 자바 프로그래밍
+- 프로젝트 실습
+  - 52. Mybatis SQL-mapper 프레임워크 사용하기
+
+### 48일(7/28,금)
+
+- 자바 프로그래밍
+- 프로젝트 실습
+  - 52. Mybatis SQL-mapper 프레임워크 사용하기(계속)
+
+
 ## 웨일즈 화상회의
 
 https://whaleon.us/o/CSrtk1/001aa759f29c46b985e32dd8562f594a
