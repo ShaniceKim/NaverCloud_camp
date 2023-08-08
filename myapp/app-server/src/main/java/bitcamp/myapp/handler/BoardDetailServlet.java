@@ -15,7 +15,7 @@ public class BoardDetailServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     Board board = InitServlet.boardDao.findBy(
@@ -28,13 +28,13 @@ public class BoardDetailServlet extends HttpServlet {
     out.println("<html>");
     out.println("<head>");
     out.println("<meta charset='UTF-8'>");
-    out.println("<title>게시글</title>");
+    out.println("<title>후기</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>게시글</h1>");
+    out.println("<h1>후기</h1>");
 
     if (board == null) {
-      out.println("<p>해당 번호의 게시글이 없습니다!</p>");
+      out.println("<p>해당 번호의 후기가 없습니다!</p>");
 
     } else {
       out.println("<form action='/board/update' method='post'>");

@@ -11,7 +11,7 @@ import bitcamp.util.SqlSessionFactoryProxy;
 public class MyServletRequestListener implements ServletRequestListener {
 
   public MyServletRequestListener() {
-    System.out.println("MyServletRequestListener 객체 생성되었네!");
+    System.out.println("MyServletRequestListener 객체가 생성되었습니다!");
   }
 
   @Override

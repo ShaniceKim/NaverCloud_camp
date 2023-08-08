@@ -18,7 +18,7 @@ public class BoardListServlet extends HttpServlet {
   SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     int category = Integer.parseInt(request.getParameter("category"));
@@ -29,12 +29,12 @@ public class BoardListServlet extends HttpServlet {
     out.println("<html>");
     out.println("<head>");
     out.println("<meta charset='UTF-8'>");
-    out.println("<title>게시글</title>");
+    out.println("<title>후기</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>게시글 목록</h1>");
+    out.println("<h1>후기 목록</h1>");
     out.println("<div style='margin:5px;'>");
-    out.printf("<a href='/board/form?category=%d'>새 글</a>\n", category);
+    out.printf("<a href='/board/form?category=%d'>새 후기</a>\n", category);
     out.println("</div>");
     out.println("<table border='1'>");
     out.println("<thead>");
