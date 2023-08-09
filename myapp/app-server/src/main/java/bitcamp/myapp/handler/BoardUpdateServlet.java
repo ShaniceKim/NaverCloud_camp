@@ -26,7 +26,6 @@ public class BoardUpdateServlet extends HttpServlet {
     }
 
     int category = Integer.parseInt(request.getParameter("category"));
-
     Board board = new Board();
     board.setNo(Integer.parseInt(request.getParameter("no")));
     board.setTitle(request.getParameter("title"));

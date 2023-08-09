@@ -10,6 +10,8 @@ import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.dao.MySQLBoardDao;
 import bitcamp.myapp.dao.MySQLMemberDao;
+import bitcamp.myapp.dao.ReserveDao; // 추가
+import bitcamp.myapp.dao.MySQLReserveDao; // 추가
 import bitcamp.util.SqlSessionFactoryProxy;
 
 @WebServlet(
@@ -22,6 +24,7 @@ public class InitServlet extends HttpServlet {
 
   public static SqlSessionFactory sqlSessionFactory;
   public static BoardDao boardDao;
+  public static ReserveDao reserveDao; // 추가
   public static MemberDao memberDao;
 
   @Override
@@ -35,6 +38,7 @@ public class InitServlet extends HttpServlet {
 
       boardDao = new MySQLBoardDao(sqlSessionFactory);
       memberDao = new MySQLMemberDao(sqlSessionFactory);
+      reserveDao = new MySQLReserveDao(sqlSessionFactory); // 추가
 
     } catch (Exception e) {
       System.out.println("InitServlet.init() 실행 중 오류 발생!");

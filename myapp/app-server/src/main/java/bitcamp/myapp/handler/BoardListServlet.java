@@ -34,7 +34,8 @@ public class BoardListServlet extends HttpServlet {
     out.println("<body>");
     out.println("<h1>후기 목록</h1>");
     out.println("<div style='margin:5px;'>");
-    out.printf("<a href='/board/form?category=%d'>새 후기</a>\n", category);
+    out.println("<a href='/'>메인</a></br>");
+    out.printf("<a href='/board/form?category=%d'>후기 작성</a>\n</br>", category);
     out.println("</div>");
     out.println("<table border='1'>");
     out.println("<thead>");
@@ -62,7 +63,6 @@ public class BoardListServlet extends HttpServlet {
     }
     out.println("</tbody>");
     out.println("</table>");
-    out.println("<a href='/'>메인</a>");
     out.println("</body>");
     out.println("</html>");
   }
