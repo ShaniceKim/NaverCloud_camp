@@ -57,14 +57,14 @@ public class ReserveAddServlet extends HttpServlet {
 		out.println("</form>");
 
 //		try {
-//			InitServlet.reserveDao.insert(r);
+//			InitServlet.reserveDao.insert(r);.
 //			InitServlet.sqlSessionFactory.openSession(false).commit();
 //			out.println("<p>예약 성공입니당</p>");
 //
 //		} catch (Exception e) {
 //			InitServlet.sqlSessionFactory.openSession(false).rollback();
 //			out.println("<p>예약 실패입니당</p>");
-//			e.printStackTrace();
+//			e.printStackTrace();.
 //		}
 
 
