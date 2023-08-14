@@ -2,7 +2,7 @@ package bitcamp.myapp.vo;
 
 import java.io.Serializable;
 
-public class Member implements Serializable, CsvObject, AutoIncrement {
+public class Member implements Serializable, CsvObject, AutoIncrement{
   private static final long serialVersionUID = 1L;
 
   public static int userId = 1;
@@ -10,11 +10,11 @@ public class Member implements Serializable, CsvObject, AutoIncrement {
   public static final char MALE = 'M';
   public static final char FEMALE = 'W';
 
-  private int no;
-  private String name;
-  private String email;
-  private String password;
-  private char gender;
+  public int no;
+  public String name;
+  public String email;
+  public String password;
+  public char gender;
 
   public Member() {}
 
@@ -31,7 +31,7 @@ public class Member implements Serializable, CsvObject, AutoIncrement {
     member.setPassword(values[3]);
     member.setGender(values[4].charAt(0));
 
-    if (Member.userId <= member.getNo()) {
+    if(Member.userId <= member.getNo()) {
       Member.userId = member.getNo() + 1;
     }
 
@@ -50,54 +50,82 @@ public class Member implements Serializable, CsvObject, AutoIncrement {
 
   @Override
   public void updateKey() {
-    if (Member.userId <= this.no) {
+    if(Member.userId <= this.no) {
       Member.userId = this.no + 1;
     }
   }
 
   public boolean equals(Object obj) {
-    if (obj == null) {
+    if(obj == null) {
       return false;
     }
-    if (this.getClass() != obj.getClass()) {
+
+    if(this.getClass() != obj.getClass()) {
       return false;
     }
+
     Member m = (Member) obj;
-    if (this.getNo() != m.getNo()) {
+    if(this.getNo() != m.getNo()) {
       return false;
     }
+
+    //    if(this.getName() != null && !this.getName().equals(m.getName())) {
+    //      return false;
+    //    }
+    //
+    //    if(this.getEmail() != null && !this.getEmail().equals(m.getEmail())) {
+    //      return false;
+    //    }
+    //
+    //    if(this.getPassword() != null && !this.getPassword().equals(m.getPassword())) {
+    //      return false;
+    //    }
+    //
+    //    if(this.getGender() != m.getGender()) {
+    //      return false;
+    //    }
+
     return true;
   }
 
-  public int getNo() {
-    return no;
-  }
-  public void setNo(int no) {
-    this.no = no;
-  }
-  public String getName() {
-    return name;
-  }
-  public void setName(String name) {
-    this.name = name;
-  }
-  public String getEmail() {
-    return email;
-  }
-  public void setEmail(String email) {
-    this.email = email;
-  }
-  public String getPassword() {
-    return password;
-  }
-  public void setPassword(String password) {
-    this.password = password;
-  }
-  public char getGender() {
-    return gender;
-  }
-  public void setGender(char gender) {
-    this.gender = gender;
+  public int getNo(){
+    return this.no;
   }
 
+  public void setNo(int no){
+    this.no = no;
+  }
+
+  public String getName(){
+    return this.name;
+  }
+
+  public void setName(String name){
+    this.name = name;
+  }
+
+  public String getEmail(){
+    return this.email;
+  }
+
+  public void setEmail(String email){
+    this.email = email;
+  }
+
+  public String getPassword(){
+    return this.password;
+  }
+
+  public void setPassword(String password){
+    this.password = password;
+  }
+
+  public char getGender(){
+    return this.gender;
+  }
+
+  public void setGender(char gender){
+    this.gender = gender;
+  }
 }
+

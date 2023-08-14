@@ -5,7 +5,6 @@ import bitcamp.myapp.vo.Member;
 import bitcamp.util.BreadcrumbPrompt;
 
 public class MemberAddListener implements MemberActionListener {
-
   MemberDao memberDao;
 
   public MemberAddListener(MemberDao memberDao) {

@@ -10,14 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import bitcamp.myapp.vo.Board;
 
 @WebServlet("/board/detail")
-public class BoardDetailServlet extends HttpServlet {
-
+public class BoardDetailServlet extends HttpServlet{
   private static final long serialVersionUID = 1L;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     Board board = InitServlet.boardDao.findBy(
         Integer.parseInt(request.getParameter("category")),
         Integer.parseInt(request.getParameter("no")));
@@ -27,17 +25,16 @@ public class BoardDetailServlet extends HttpServlet {
     out.println("<!DOCTYPE html>");
     out.println("<html>");
     out.println("<head>");
-    out.println("<meta charset='UTF-8'>");
-    out.println("<title>후기</title>");
+    out.println("<meta charset=\"UTF-8\">");
+    out.println("<title>게시글</title>");
     out.println("</head>");
     out.println("<body>");
-    out.println("<h1>후기</h1>");
+    out.println("<h1>게시글</h1>");
 
     if (board == null) {
-      out.println("<p>해당 번호의 후기가 없습니다!</p>");
-
+      out.println("<p>해당 번호의 게시글이 없습니다!</p>");
     } else {
-      out.println("<form action='/board/update' method='post'>");
+      out.println("<form action='/board/update'>");
       out.printf("<input type='hidden' name='category' value='%d'>\n", board.getCategory());
       out.println("<table border='1'>");
       out.printf("<tr><th style='width:120px;'>번호</th>"
@@ -48,7 +45,7 @@ public class BoardDetailServlet extends HttpServlet {
           + " <td><textarea name='content' style='height:200px; width:400px;'>%s</textarea></td></tr>\n", board.getContent());
       out.printf("<tr><th>작성자</th> <td>%s</td></tr>\n", board.getWriter().getName());
       out.printf("<tr><th>조회수</th> <td>%s</td></tr>\n", board.getViewCount());
-      out.printf("<tr><th>등록일</th> <td>%tY-%1$tm-%1$td</td></tr>\n", board.getCreatedDate());
+      out.printf("<tr><th>등록일</th> <td>%tY-%1$tm-%1$td</td></tr>>\n", board.getCreatedDate());
       out.println("</table>");
 
       out.println("<div>");
@@ -64,24 +61,11 @@ public class BoardDetailServlet extends HttpServlet {
         InitServlet.boardDao.updateCount(board);
         InitServlet.sqlSessionFactory.openSession(false).commit();
 
-      } catch (Exception e) {
+      } catch(Exception e) {
         InitServlet.sqlSessionFactory.openSession(false).rollback();
       }
     }
-
     out.println("</body>");
     out.println("</html>");
-
   }
 }
-
-
-
-
-
-
-
-
-
-
-

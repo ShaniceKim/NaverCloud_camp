@@ -9,13 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/member/delete")
 public class MemberDeleteServlet extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     try {
       if (InitServlet.memberDao.delete(Integer.parseInt(request.getParameter("no"))) == 0) {
         throw new Exception("해당 번호의 회원이 없습니다.");
@@ -29,5 +27,4 @@ public class MemberDeleteServlet extends HttpServlet {
       throw new RuntimeException(e);
     }
   }
-
 }

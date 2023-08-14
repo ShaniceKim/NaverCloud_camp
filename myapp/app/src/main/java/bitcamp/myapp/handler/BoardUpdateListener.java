@@ -5,15 +5,13 @@ import bitcamp.myapp.vo.Board;
 import bitcamp.util.ActionListener;
 import bitcamp.util.BreadcrumbPrompt;
 
-public class BoardUpdateListener implements ActionListener {
-
+public class BoardUpdateListener implements ActionListener{
   BoardDao boardDao;
 
   public BoardUpdateListener(BoardDao boardDao) {
     this.boardDao = boardDao;
   }
 
-  @Override
   public void service(BreadcrumbPrompt prompt) {
     int boardNo = prompt.inputInt("번호? ");
 
@@ -34,14 +32,3 @@ public class BoardUpdateListener implements ActionListener {
     boardDao.update(board);
   }
 }
-
-
-
-
-
-
-
-
-
-
-

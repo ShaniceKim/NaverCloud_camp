@@ -10,20 +10,17 @@ import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.Member;
 
 @WebServlet("/board/delete")
-public class BoardDeleteServlet extends HttpServlet {
-
+public class BoardDeleteServlet extends HttpServlet{
   private static final long serialVersionUID = 1L;
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    if (loginUser == null) {
+    if(loginUser == null) {
       response.sendRedirect("/auth/form.html");
       return;
     }
-
     int category = Integer.parseInt(request.getParameter("category"));
 
     Board b = new Board();
@@ -33,7 +30,7 @@ public class BoardDeleteServlet extends HttpServlet {
 
     try {
       if (InitServlet.boardDao.delete(b) == 0) {
-        throw new Exception("해당 번호의 후기가 없거나 삭제 권한이 없습니다.");
+        throw new Exception("해당 번호의 게시글이 없거나 삭제 권한이 없습니다.");
       } else {
         response.sendRedirect("/board/list?category=" + category);
       }
@@ -45,14 +42,3 @@ public class BoardDeleteServlet extends HttpServlet {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-

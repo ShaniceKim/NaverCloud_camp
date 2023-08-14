@@ -5,8 +5,7 @@ import bitcamp.myapp.vo.Board;
 import bitcamp.util.ActionListener;
 import bitcamp.util.BreadcrumbPrompt;
 
-public class BoardDetailListener implements ActionListener {
-
+public class BoardDetailListener implements ActionListener{
   BoardDao boardDao;
 
   public BoardDetailListener(BoardDao boardDao) {
@@ -32,14 +31,3 @@ public class BoardDetailListener implements ActionListener {
     boardDao.update(board);
   }
 }
-
-
-
-
-
-
-
-
-
-
-

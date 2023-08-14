@@ -12,13 +12,11 @@ import bitcamp.myapp.vo.Member;
 
 @WebServlet("/member/list")
 public class MemberListServlet extends HttpServlet {
-
   private static final long serialVersionUID = 1L;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<!DOCTYPE html>");
@@ -52,5 +50,4 @@ public class MemberListServlet extends HttpServlet {
     out.println("</body>");
     out.println("</html>");
   }
-
 }

@@ -84,6 +84,13 @@
       and board_no=#{no}
       and writer=#{writer.no}
   </delete>
+  
+  <insert id ="insertFiles" parameterType="board">
+  insert into myapp_board_file(filepath, board_no)
+  values
+  <foreach collection="board.attachedFiles"
+  item="attachedFile" open="(" close=")" separator",">#{filePath}, #{board.no})</foreach>
+  </insert>
 </mapper>
 
 
