@@ -12,20 +12,26 @@ dependencies {
     // 서브 프로젝트의 클래스를 사용하기
     implementation project(':app-common')
     
-    // MYSQL JDBC 라이브러리
+    // MySQL JDBC Driver
     implementation 'mysql:mysql-connector-java:8.0.33'
     
     // Google JSON 라이브러리
     //implementation 'com.google.code.gson:gson:2.10.1'
-    
+  
     // Mybatis 라이브러리
     implementation 'org.mybatis:mybatis:3.5.13'
-    
-    // Servlet API
+  
+    // Servlet API 
     providedCompile 'javax.servlet:javax.servlet-api:4.0.1'
+        
+    // multipart/form-data 처리 라이브러리
+    // implementation 'commons-fileupload:commons-fileupload:1.5' // Servlet API로 대체
+        
+    // 임베디드 Tomcat 서버
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.79'
     
-    //multipart/form-data 처리 라이브러리
-    implementation 'commons-fileupload:commons-fileupload:1.5'
+    // Amazone AWS Java SDK s3
+    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.530'
     
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
     implementation 'com.google.guava:guava:31.1-jre'
@@ -47,7 +53,6 @@ tasks.withType(JavaCompile) {
     targetCompatibility = '17'
 }
 
-// eclipse 프로젝트 이름을 설정하기
 eclipse {
     project {
         name = "myapp-server"
@@ -57,7 +62,6 @@ eclipse {
       targetCompatibility = 17
       javaRuntimeName = "JavaSE-17"
     }
-    
     wtp {
         facet {
             facet name: 'jst.java', version: '17'

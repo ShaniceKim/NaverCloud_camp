@@ -11,11 +11,13 @@ import bitcamp.myapp.vo.Member;
 
 @WebServlet("/member/add")
 public class MemberAddServlet extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
     Member m = new Member();
     m.setName(request.getParameter("name"));
     m.setEmail(request.getParameter("email"));

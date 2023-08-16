@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/board/form")
-public class BoardFormServlet extends HttpServlet{
+public class BoardFormServlet extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
     int category = Integer.parseInt(request.getParameter("category"));
 
     response.setContentType("text/html;charset=UTF-8");
@@ -36,5 +38,17 @@ public class BoardFormServlet extends HttpServlet{
     out.println("</form>");
     out.println("</body>");
     out.println("</html>");
+
   }
 }
+
+
+
+
+
+
+
+
+
+
+

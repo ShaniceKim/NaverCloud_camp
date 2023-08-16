@@ -2,9 +2,10 @@ package bitcamp.myapp.vo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
-public class Board implements Serializable{
+public class Board implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private int no;
@@ -15,7 +16,7 @@ public class Board implements Serializable{
   private int viewCount;
   private Timestamp createdDate;
   private int category;
-  private List<AttachedFiles> attachedFiles;
+  private List<AttachedFile> attachedFiles;
 
   @Override
   public int hashCode() {
@@ -38,67 +39,53 @@ public class Board implements Serializable{
   public void setNo(int no) {
     this.no = no;
   }
-
   public String getTitle() {
     return title;
   }
-
   public void setTitle(String title) {
     this.title = title;
   }
-
   public String getContent() {
     return content;
   }
-
   public void setContent(String content) {
     this.content = content;
   }
-
   public Member getWriter() {
     return writer;
   }
-
   public void setWriter(Member writer) {
     this.writer = writer;
   }
-
   public int getViewCount() {
     return viewCount;
   }
-
   public void setViewCount(int viewCount) {
     this.viewCount = viewCount;
   }
-
   public Timestamp getCreatedDate() {
     return createdDate;
   }
-
   public void setCreatedDate(Timestamp createdDate) {
     this.createdDate = createdDate;
   }
-
   public String getPassword() {
     return password;
   }
-
   public void setPassword(String password) {
     this.password = password;
   }
-
   public int getCategory() {
     return category;
   }
-
   public void setCategory(int category) {
     this.category = category;
   }
-public List<AttachedFiles> getAttachedFiles() {
-	return attachedFiles;
-}
-public void setAttachedFiles(List<AttachedFiles> attachedFiles) {
-	this.attachedFiles = attachedFiles;
-}
-  
+  public List<AttachedFile> getAttachedFiles() {
+    return attachedFiles;
+  }
+  public void setAttachedFiles(List<AttachedFile> attachedFiles) {
+    this.attachedFiles = attachedFiles;
+  }
+
 }

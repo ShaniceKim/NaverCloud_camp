@@ -10,17 +10,20 @@ import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.Member;
 
 @WebServlet("/board/delete")
-public class BoardDeleteServlet extends HttpServlet{
+public class BoardDeleteServlet extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    if(loginUser == null) {
+    if (loginUser == null) {
       response.sendRedirect("/auth/form.html");
       return;
     }
+
     int category = Integer.parseInt(request.getParameter("category"));
 
     Board b = new Board();
@@ -42,3 +45,14 @@ public class BoardDeleteServlet extends HttpServlet{
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 package bitcamp.myapp;
 
+import java.util.LinkedList;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.dao.BoardListDao;
 import bitcamp.myapp.dao.MemberDao;
@@ -17,14 +18,19 @@ import bitcamp.myapp.handler.MemberDeleteListener;
 import bitcamp.myapp.handler.MemberDetailListener;
 import bitcamp.myapp.handler.MemberListListener;
 import bitcamp.myapp.handler.MemberUpdateListener;
+import bitcamp.myapp.vo.Board;
 import bitcamp.util.BreadcrumbPrompt;
 import bitcamp.util.Menu;
 import bitcamp.util.MenuGroup;
 
 public class App {
+
   MemberDao memberDao = new MemberListDao("member.json");
   BoardDao boardDao = new BoardListDao("board.json");
   BoardDao readingDao = new BoardListDao("reading.json");
+
+  LinkedList<Board> boardList = new LinkedList<>();
+  LinkedList<Board> readingList = new LinkedList<>();
 
   BreadcrumbPrompt prompt = new BreadcrumbPrompt();
 
@@ -38,7 +44,7 @@ public class App {
     new App().execute();
   }
 
-  static void printTitle(){
+  static void printTitle() {
     System.out.println("나의 목록 관리 시스템");
     System.out.println("----------------------------------");
   }
@@ -49,7 +55,7 @@ public class App {
     prompt.close();
   }
 
-  public void prepareMenu() {
+  private void prepareMenu() {
     MenuGroup memberMenu = new MenuGroup("회원");
     memberMenu.add(new Menu("등록", new MemberAddListener(memberDao)));
     memberMenu.add(new Menu("목록", new MemberListListener(memberDao)));

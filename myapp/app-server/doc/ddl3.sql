@@ -42,7 +42,7 @@ CREATE TABLE myapp_board (
   board_no     INTEGER      NOT NULL COMMENT '번호', -- 번호
   title        VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
   content      MEDIUMTEXT   NOT NULL COMMENT '내용', -- 내용
-  view_count   INTEGER      NOT NULL DEFAULT 1 COMMENT '조회수', -- 조회수
+  view_count   INTEGER      NOT NULL DEFAULT 0 COMMENT '조회수', -- 조회수
   created_date DATETIME     NOT NULL DEFAULT now() COMMENT '등록일', -- 등록일
   writer       INTEGER      NOT NULL COMMENT '작성자', -- 작성자
   category     INTEGER      NOT NULL COMMENT '게시판' -- 게시판
