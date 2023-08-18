@@ -16,14 +16,16 @@ import bitcamp.myapp.vo.Member;
 
 @WebServlet("/board/add")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
-public class BoardAddServlet extends HttpServlet{
+public class BoardAddServlet extends HttpServlet {
+
   private static final long serialVersionUID = 1L;
 
   @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-    if(loginUser == null) {
+    if (loginUser == null) {
       response.sendRedirect("/auth/form.html");
       return;
     }
@@ -35,15 +37,12 @@ public class BoardAddServlet extends HttpServlet{
       board.setContent(request.getParameter("content"));
       board.setCategory(Integer.parseInt(request.getParameter("category")));
 
-      String uploadDir = request.getServletContext().getRealPath("upload/board/");
-      System.out.println(uploadDir);
       ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
-
-      for(Part part : request.getParts()) {
-        // System.out.println(part.getName());
-        if(part.getName().equals("files") && part.getSize() > 0) {
-        	String uploadFileUrl = InitServlet.ncpObjectStorageService.uploadFile(
-        			"bitcamp-nc7-bucket-23", "board/", part);
+      for (Part part : request.getParts()) {
+        //        System.out.println(part.getName());
+        if (part.getName().equals("files") && part.getSize() > 0) {
+          String uploadFileUrl = InitServlet.ncpObjectStorageService.uploadFile(
+              "bitcamp-nc7-bucket-23", "board/", part);
           AttachedFile attachedFile = new AttachedFile();
           attachedFile.setFilePath(uploadFileUrl);
           attachedFiles.add(attachedFile);
@@ -51,12 +50,13 @@ public class BoardAddServlet extends HttpServlet{
       }
       board.setAttachedFiles(attachedFiles);
 
+
       response.setContentType("text/html;charset=UTF-8");
       PrintWriter out = response.getWriter();
       out.println("<!DOCTYPE html>");
       out.println("<html>");
       out.println("<head>");
-      out.println("<meta charset=\"UTF-8\">");
+      out.println("<meta charset='UTF-8'>");
       out.printf("<meta http-equiv='refresh' content='1;url=/board/list?category=%d'>\n", board.getCategory());
       out.println("<title>게시글</title>");
       out.println("</head>");
@@ -67,7 +67,7 @@ public class BoardAddServlet extends HttpServlet{
         InitServlet.boardDao.insert(board);
         //        System.out.println(board.getNo());
 
-        if(attachedFiles.size() > 0) {
+        if (attachedFiles.size() > 0) {
           int count = InitServlet.boardDao.insertFiles(board);
           System.out.println(count);
         }
@@ -82,8 +82,20 @@ public class BoardAddServlet extends HttpServlet{
       }
       out.println("</body>");
       out.println("</html>");
+
     } catch (Exception e) {
       throw new ServletException(e);
     }
   }
 }
+
+
+
+
+
+
+
+
+
+
+
