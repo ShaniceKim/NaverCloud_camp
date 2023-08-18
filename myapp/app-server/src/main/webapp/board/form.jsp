@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>비트캠프</title>
+    <title>비트 캠프</title>
   </head>
   <body>
     <h1>게시글(JSP)</h1>
