@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>비트 캠프</title>
-  </head>
+   </head>
   <body>
     <h1>게시글(JSP)</h1>
     <form action="/board/add" method="post" enctype="multipart/form-data">

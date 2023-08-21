@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id 'eclipse'
+    //id 'eclipse'
 }
 
 repositories {
@@ -43,7 +43,7 @@ tasks.withType(JavaCompile) {
 }
 
 // eclipse 프로젝트 이름을 설정하기
-eclipse {
+/* eclipse {
     project {
         name = "myapp"
     }
@@ -53,3 +53,4 @@ eclipse {
       javaRuntimeName = "JavaSE-17"
     }
 }
+*/
