@@ -8,7 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.vo.Member;
+import bitcamp.util.NcpObjectStorageService;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 @WebServlet("/member/list")
 public class MemberListServlet extends HttpServlet {
@@ -33,14 +37,16 @@ public class MemberListServlet extends HttpServlet {
 
     out.println("<h1>회원 목록</h1>");
     out.println("<div style='margin:5px;'>");
-    out.println("<a href='/member/form.html'>새 회원</a>");
+    out.println("<a href='/member/form'>새 회원</a>");
     out.println("</div>");
     out.println("<table border='1'>");
     out.println("<thead>");
     out.println("  <tr><th>번호</th> <th>이름</th> <th>이메일</th></tr>");
     out.println("</thead>");
 
-    List<Member> list = InitServlet.memberDao.findAll();
+    MemberDao memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
+
+    List<Member> list = memberDao.findAll();
     for (Member m : list) {
       out.printf("<tr>"
           + " <td>%d</td>"
