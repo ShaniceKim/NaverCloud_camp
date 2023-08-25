@@ -48,3 +48,13 @@
     sqlSessionFactory.openSession(false).commit();
     response.sendRedirect("list.jsp?category=" + request.getParameter("category"));
 %>
+
+
+
+
+
+
+
+
+
+

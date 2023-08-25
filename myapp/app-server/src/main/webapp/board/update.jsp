@@ -51,3 +51,14 @@
         response.sendRedirect("list.jsp?category=" + request.getParameter("category"));
     }
 %>
+
+
+
+
+
+
+
+
+
+
+
