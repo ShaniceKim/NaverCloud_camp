@@ -1,43 +1,25 @@
 <%@ page
     language="java"
     pageEncoding="UTF-8"
-    contentType="text/html;charset=UTF-8"%>
-
-<%
-    String email = "";
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-      for (Cookie cookie : cookies) {
-        if (cookie.getName().equals("email")) {
-          email = cookie.getValue();
-          break;
-        }
-      }
-    }
-%>
+    contentType="text/html;charset=UTF-8"
+    trimDirectiveWhitespaces="true"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8'>
-<title>비트캠프</title>
+    <meta charset='UTF-8'>
+    <title>비트캠프</title>
 </head>
 <body>
 
 <jsp:include page="../header.jsp"/>
 
-<h1>로그인</h1>
-
-<form action='/auth/login.jsp' method='post'>
-<table border='1'>
-<tr>
-  <th>이메일</th> <td><input type='email' name='email' value='<%=email%>'></td>
-</tr>
-<tr>
-  <th>암호</th> <td><input type='password' name='password'></td>
-</tr>
-</table>
-<button>로그인</button>
- <input type='checkbox' name='saveEmail'> 이메일 저장
+<h1>게시글(JSP + Action Tag + Scriptlet)</h1>
+<form action='/board/add.jsp' method='post' enctype='multipart/form-data'>
+제목 <input type='text' name='title'><br>
+내용 <textarea name='content'></textarea><br>
+파일 <input type='file' name='files' multiple><br>
+<input type='hidden' name='category' value='1'>
+<button>등록</button>
 </form>
 
 <jsp:include page="../footer.jsp"/>

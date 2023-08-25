@@ -5,25 +5,20 @@
     trimDirectiveWhitespaces="true"
     errorPage="/error.jsp"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="bitcamp.myapp.dao.BoardDao"%>
 <%@ page import="bitcamp.myapp.vo.AttachedFile"%>
 <%@ page import="bitcamp.myapp.vo.Board"%>
-<%@ page import="bitcamp.myapp.vo.Member"%>
-<%@ page import="bitcamp.util.NcpObjectStorageService"%>
-<%@ page import="org.apache.ibatis.session.SqlSessionFactory"%>
 
+<jsp:useBean id="boardDao" type="bitcamp.myapp.dao.BoardDao" scope="application"/>
+<jsp:useBean id="sqlSessionFactory" type="org.apache.ibatis.session.SqlSessionFactory" scope="application"/>
+<jsp:useBean id="ncpObjectStorageService" type="bitcamp.util.NcpObjectStorageService" scope="application"/>
+<jsp:useBean id="loginUser" class="bitcamp.myapp.vo.Member" scope="session"/>
 <%
-    request.setAttribute("refresh", "2;url=list.jsp?category=" + request.getParameter("category"));
-
-    Member loginUser = (Member) session.getAttribute("loginUser");
-    if (loginUser == null) {
-      response.sendRedirect("/auth/form.html");
+    if (loginUser.getNo() == 0) {
+      response.sendRedirect("/auth/form.jsp");
       return;
     }
 
-    BoardDao boardDao = (BoardDao) application.getAttribute("boardDao");
-    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) application.getAttribute("sqlSessionFactory");
-    NcpObjectStorageService ncpObjectStorageService = (NcpObjectStorageService) application.getAttribute("ncpObjectStorageService");
+    request.setAttribute("refresh", "2;url=list.jsp?category=" + request.getParameter("category"));
 
     Board board = new Board();
     board.setWriter(loginUser);
@@ -36,7 +31,7 @@
     for (Part part : request.getParts()) {
         if (part.getName().equals("files") && part.getSize() > 0) {
           String uploadFileUrl = ncpObjectStorageService.uploadFile(
-                  "bitcamp-nc7-bucket-118", "board/", part);
+                  "bitcamp-nc7-bucket-23", "board/", part);
           AttachedFile attachedFile = new AttachedFile();
           attachedFile.setFilePath(uploadFileUrl);
           attachedFiles.add(attachedFile);
