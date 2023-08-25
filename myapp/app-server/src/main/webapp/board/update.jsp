@@ -1,46 +1,58 @@
 <%@ page
     language="java"
     pageEncoding="UTF-8"
-    contentType="text/html;charset=UTF-8"%>
+    contentType="text/html;charset=UTF-8"
+    trimDirectiveWhitespaces="true"
+    errorPage="/error.jsp"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="bitcamp.myapp.dao.BoardDao"%>
+<%@ page import="bitcamp.myapp.vo.AttachedFile"%>
+<%@ page import="bitcamp.myapp.vo.Board"%>
+<%@ page import="bitcamp.myapp.vo.Member"%>
+<%@ page import="bitcamp.util.NcpObjectStorageService"%>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactory"%>
 
 <%
-    String email = "";
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-      for (Cookie cookie : cookies) {
-        if (cookie.getName().equals("email")) {
-          email = cookie.getValue();
-          break;
+    request.setAttribute("refresh", "2;url=list.jsp?category=" + request.getParameter("category"));
+
+    Member loginUser = (Member) session.getAttribute("loginUser");
+    if (loginUser == null) {
+      response.sendRedirect("/auth/form.html");
+      return;
+    }
+
+    BoardDao boardDao = (BoardDao) application.getAttribute("boardDao");
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) application.getAttribute("sqlSessionFactory");
+    NcpObjectStorageService ncpObjectStorageService = (NcpObjectStorageService) application.getAttribute("ncpObjectStorageService");
+
+    Board board = new Board();
+    board.setWriter(loginUser);
+    board.setNo(Integer.parseInt(request.getParameter("no")));
+    board.setTitle(request.getParameter("title"));
+    board.setContent(request.getParameter("content"));
+    board.setCategory(Integer.parseInt(request.getParameter("category")));
+
+    ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
+    for (Part part : request.getParts()) {
+        if (part.getName().equals("files") && part.getSize() > 0) {
+          String uploadFileUrl = ncpObjectStorageService.uploadFile(
+                  "bitcamp-nc7-bucket-118", "board/", part);
+          AttachedFile attachedFile = new AttachedFile();
+          attachedFile.setFilePath(uploadFileUrl);
+          attachedFiles.add(attachedFile);
         }
-      }
+    }
+    board.setAttachedFiles(attachedFiles);
+
+    if (boardDao.update(board) == 0) {
+        throw new Exception("게시글이 없거나 변경 권한이 없습니다.");
+    } else {
+        if (attachedFiles.size() > 0) {
+          int count = boardDao.insertFiles(board);
+          System.out.println(count);
+        }
+
+        sqlSessionFactory.openSession(false).commit();
+        response.sendRedirect("list.jsp?category=" + request.getParameter("category"));
     }
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset='UTF-8'>
-<title>비트캠프</title>
-</head>
-<body>
-
-<jsp:include page="../header.jsp"/>
-
-<h1>로그인</h1>
-
-<form action='/auth/login.jsp' method='post'>
-<table border='1'>
-<tr>
-  <th>이메일</th> <td><input type='email' name='email' value='<%=email%>'></td>
-</tr>
-<tr>
-  <th>암호</th> <td><input type='password' name='password'></td>
-</tr>
-</table>
-<button>로그인</button>
- <input type='checkbox' name='saveEmail'> 이메일 저장
-</form>
-
-<jsp:include page="../footer.jsp"/>
-
-</body>
-</html>
