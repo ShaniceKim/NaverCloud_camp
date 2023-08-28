@@ -47,7 +47,7 @@
 
         <jsp:useBean id="loginUser" class="bitcamp.myapp.vo.Member" scope="session"/>
         <% if (loginUser.getNo() == 0) { %>
-             <li class="nav-item"> <a class="nav-link" href='/auth/form.jsp'>로그인</a>
+             <li class="nav-item"> <a class="nav-link" href='/auth/form.jsp'>로그인</a></li>
         <% } else {
              if (loginUser.getPhoto() == null) { %>
                <img style='height:40px' src='/images/avatar.png'>
