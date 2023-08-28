@@ -43,7 +43,7 @@
     <button class="navbar-toggler hidden-lg-up collapsed" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation"> ☰ </button>
     <div class="navbar-toggleable-md collapse" id="exCollapsingNavbar2" >
       <ul class="nav navbar-nav pull-xs-right">
-        <li class="nav-item"> <a class="nav-link" href='/member/add.jsp'>회원가입</a></li>
+        <li class="nav-item"> <a class="nav-link" href='/member/form.jsp'>회원가입</a></li>
 
         <jsp:useBean id="loginUser" class="bitcamp.myapp.vo.Member" scope="session"/>
         <% if (loginUser.getNo() == 0) { %>
