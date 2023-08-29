@@ -19,7 +19,7 @@ public class MemberListController extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     MemberDao memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
     request.setAttribute("list", memberDao.findAll());

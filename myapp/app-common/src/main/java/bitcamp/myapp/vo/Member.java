@@ -19,6 +19,19 @@ public class Member implements Serializable {
   private String photo;
 
   @Override
+  public String toString() {
+    return "Member{" +
+            "no=" + no +
+            ", name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            ", gender=" + gender +
+            ", createdDate=" + createdDate +
+            ", photo='" + photo + '\'' +
+            '}';
+  }
+
+  @Override
   public int hashCode() {
     return Objects.hash(no);
   }
@@ -69,10 +82,11 @@ public class Member implements Serializable {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
-public String getPhoto() {
-	return photo;
-}
-public void setPhoto(String photo) {
-	this.photo = photo;
-}
+  public String getPhoto() {
+    return photo;
+  }
+  public void setPhoto(String photo) {
+    this.photo = photo;
+  }
+
 }

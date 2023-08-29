@@ -17,9 +17,9 @@ import bitcamp.myapp.vo.Member;
 import bitcamp.util.NcpObjectStorageService;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-@WebServlet("/board/add")
+@WebServlet("/board/update")
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
-public class BoardAddServlet extends HttpServlet {
+public class BoardUpdateController extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 
@@ -29,7 +29,7 @@ public class BoardAddServlet extends HttpServlet {
 
     Member loginUser = (Member) request.getSession().getAttribute("loginUser");
     if (loginUser == null) {
-      response.sendRedirect("/auth/form.html");
+      response.sendRedirect("/auth/login");
       return;
     }
 
@@ -40,6 +40,7 @@ public class BoardAddServlet extends HttpServlet {
     try {
       Board board = new Board();
       board.setWriter(loginUser);
+      board.setNo(Integer.parseInt(request.getParameter("no")));
       board.setTitle(request.getParameter("title"));
       board.setContent(request.getParameter("content"));
       board.setCategory(Integer.parseInt(request.getParameter("category")));
@@ -56,24 +57,23 @@ public class BoardAddServlet extends HttpServlet {
       }
       board.setAttachedFiles(attachedFiles);
 
-      boardDao.insert(board);
-      if (attachedFiles.size() > 0) {
-        boardDao.insertFiles(board);
-      }
+      if (boardDao.update(board) == 0) {
+        throw new Exception("게시글이 없거나 변경 권한이 없습니다.");
+      } else {
+        if (attachedFiles.size() > 0) {
+          int count = boardDao.insertFiles(board);
+          System.out.println(count);
+        }
 
-      sqlSessionFactory.openSession(false).commit();
-      response.sendRedirect("list?category=" + request.getParameter("category"));
+        sqlSessionFactory.openSession(false).commit();
+        response.sendRedirect("list?category=" + request.getParameter("category"));
+      }
 
     } catch (Exception e) {
       sqlSessionFactory.openSession(false).rollback();
-
-      // ErrorServlet 으로 포워딩 하기 전에 ErrorServlet이 사용할 데이터를
-      // ServletRequest 보관소에 저장한다.
-      request.setAttribute("error", e);
-      request.setAttribute("message", "게시글 등록 오류!");
-      request.setAttribute("refresh", "2;url=list?category=" + request.getParameter("category"));
-
-      request.getRequestDispatcher("/error").forward(request, response);
+      request.setAttribute("refresh", "2;url=detail?category=" + request.getParameter("category") +
+              "&no=" + request.getParameter("no"));
+      throw new ServletException(e);
     }
   }
 }
