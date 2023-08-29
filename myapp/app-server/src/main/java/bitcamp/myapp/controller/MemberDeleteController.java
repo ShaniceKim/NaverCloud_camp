@@ -1,4 +1,4 @@
-package bitcamp.myapp.Controller;
+package bitcamp.myapp.controller;
 
 import bitcamp.myapp.dao.MemberDao;
 import org.apache.ibatis.session.SqlSessionFactory;

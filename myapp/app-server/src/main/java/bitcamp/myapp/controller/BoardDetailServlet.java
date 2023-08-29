@@ -1,4 +1,4 @@
-package bitcamp.myapp.Controller;
+package bitcamp.myapp.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.AttachedFile;
 import bitcamp.myapp.vo.Board;
-import bitcamp.util.NcpObjectStorageService;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 @WebServlet("/board/detail")

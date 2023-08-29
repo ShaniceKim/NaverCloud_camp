@@ -1,4 +1,4 @@
-package bitcamp.myapp.Controller;
+package bitcamp.myapp.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.NcpObjectStorageService;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 @WebServlet("/board/delete")

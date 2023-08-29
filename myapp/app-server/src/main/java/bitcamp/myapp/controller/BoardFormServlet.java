@@ -1,4 +1,4 @@
-package bitcamp.myapp.Controller;
+package bitcamp.myapp.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;

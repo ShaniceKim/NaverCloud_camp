@@ -1,10 +1,9 @@
-package bitcamp.myapp.Controller;
+package bitcamp.myapp.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.Board;
-import bitcamp.util.NcpObjectStorageService;
-import org.apache.ibatis.session.SqlSessionFactory;
 
 @WebServlet("/board/list")
 public class BoardListServlet extends HttpServlet {
