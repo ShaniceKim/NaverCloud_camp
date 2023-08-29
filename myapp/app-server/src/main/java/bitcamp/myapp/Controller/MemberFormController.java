@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet("/member/form")
-public class MemberFormServlet extends HttpServlet {
+public class MemberFormController extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 

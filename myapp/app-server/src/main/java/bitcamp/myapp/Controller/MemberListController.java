@@ -11,11 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.NcpObjectStorageService;
-import org.apache.ibatis.session.SqlSessionFactory;
 
 @WebServlet("/member/list")
-public class MemberListServlet extends HttpServlet {
+public class MemberListController extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
 

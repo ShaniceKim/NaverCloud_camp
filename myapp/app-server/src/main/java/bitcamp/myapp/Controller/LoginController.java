@@ -1,7 +1,6 @@
 package bitcamp.myapp.Controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -13,9 +12,23 @@ import bitcamp.myapp.dao.MemberDao;
 import bitcamp.myapp.vo.Member;
 
 @WebServlet("/auth/login")
-public class LoginServlet extends HttpServlet {
+public class LoginController extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
+
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+
+
+    // 인클루딩 하는 경우
+    // 여기서 콘텐트 타입을 설정해야한다.
+    response.setContentType("text/html;charset=UTF-8");
+
+    // View 컴포넌트를 인클루딩 한다.
+    request.getRequestDispatcher("/auth/form.jsp").include(request, response);
+
+  }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -46,6 +59,6 @@ public class LoginServlet extends HttpServlet {
     request.setAttribute("message", "회원 정보가 일치하지 않습니다.");
     request.setAttribute("refresh", "1;url=/auth/form.html");
 
-    request.getRequestDispatcher("/error").forward(request, response);
+    request.getRequestDispatcher("/error.jsp").forward(request, response);
   }
 }

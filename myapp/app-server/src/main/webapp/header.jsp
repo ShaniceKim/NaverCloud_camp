@@ -10,13 +10,13 @@
 
 <jsp:useBean id="loginUser" class="bitcamp.myapp.vo.Member" scope="session"/>
 <% if (loginUser.getNo() == 0) { %>
-     <a href='/auth/form.jsp'>로그인</a>
+     <a href='/auth/login'>로그인</a>
 <% } else {
      if (loginUser.getPhoto() == null) { %>
        <img style='height:40px' src='/images/avatar.png'>
   <% } else { %>
        <img src='http://mvsenqskbqzl19010704.cdn.ntruss.com/member/${loginUser.photo}?type=f&w=30&h=40&faceopt=true&ttype=jpg'>
   <% } %>
-       ${loginUser.name} <a href='/auth/logout.jsp'>로그아웃</a>
+       ${loginUser.name} <a href='/auth/logout'>로그아웃</a>
 <% } %>
 </div>
