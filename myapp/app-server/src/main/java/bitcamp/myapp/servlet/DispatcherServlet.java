@@ -1,10 +1,10 @@
 package bitcamp.myapp.servlet;
 
-import bitcamp.myapp.controller.LoginController;
-import bitcamp.myapp.controller.LogoutController;
-import bitcamp.myapp.controller.MemberListController;
+import bitcamp.myapp.config.AppConfig;
+import bitcamp.myapp.config.NcpConfig;
 import bitcamp.myapp.controller.PageController;
-import bitcamp.myapp.dao.MemberDao;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,23 +13,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-@WebServlet("/app/*")
+@WebServlet(
+        value = "/app/*",
+        loadOnStartup = 1)
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 public class DispatcherServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  Map<String, PageController> controllerMap = new HashMap<>();
+  AnnotationConfigApplicationContext iocContainer;
 
   @Override
   public void init() throws ServletException {
-    MemberDao memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
+    System.out.println("DispatcherServlet.init() 호출됨!");
+    iocContainer = new AnnotationConfigApplicationContext(AppConfig.class, NcpConfig.class);
 
-    controllerMap.put("/auth/login", new LoginController(memberDao));
-    controllerMap.put("/auth/logout", new LogoutController());
-    controllerMap.put("/member/list", new MemberListController(memberDao));
+    SqlSessionFactory sqlSessionFactory = iocContainer.getBean(SqlSessionFactory.class);
+    this.getServletContext().setAttribute("sqlSessionFactory", sqlSessionFactory);
   }
 
   @Override
@@ -40,10 +40,7 @@ public class DispatcherServlet extends HttpServlet {
     response.setContentType("text/html;charset=UTF-8");
 
     // 클라이언트가 요청한 페이지 컨트롤러를 찾는다.
-    PageController pageController = controllerMap.get(pageControllerPath);
-    if (pageController == null) {
-      throw new ServletException("해당 요청을 처리할 수 없습니다!");
-    }
+    PageController pageController = (PageController) iocContainer.getBean(pageControllerPath);
 
     // 페이지 컨트롤러를 실행한다.
     try {
