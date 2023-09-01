@@ -28,14 +28,3 @@ public class BoardListController implements PageController {
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
