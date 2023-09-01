@@ -31,7 +31,7 @@
         <td>${member.email}</td>
     </tr>
 </c:forEach>
-</tbody>
+
 </table>
 <a href='/'>메인</a>
 
