@@ -31,6 +31,7 @@ public class DispatcherServlet extends HttpServlet {
 //    for (String name : names) {
 //      System.out.printf("=> %s\n", iocContainer.getBean(name).getClass().getName());
 //    }
+
   }
 
   @Override
