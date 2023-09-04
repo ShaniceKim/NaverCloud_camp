@@ -52,11 +52,9 @@ public class DispatcherServlet extends HttpServlet {
       } else {
         request.getRequestDispatcher(viewUrl).include(request, response);
       }
-
     } catch (Exception e) {
       // 페이지 컨트롤러 실행 중 오류가 발생했다면, 예외를 던진다.
       throw new ServletException("요청 처리 중 오류 발생!", e);
     }
-
   }
 }
