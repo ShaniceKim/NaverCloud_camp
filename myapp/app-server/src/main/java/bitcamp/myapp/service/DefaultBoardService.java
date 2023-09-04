@@ -3,49 +3,32 @@ package bitcamp.myapp.service;
 import bitcamp.myapp.dao.BoardDao;
 import bitcamp.myapp.vo.AttachedFile;
 import bitcamp.myapp.vo.Board;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import bitcamp.util.Transactional;
 
 import java.util.List;
 
-@Service
+//@Service
 public class DefaultBoardService implements BoardService {
 
   BoardDao boardDao;
-  PlatformTransactionManager txManager;
 
-  public DefaultBoardService(BoardDao boardDao, PlatformTransactionManager txManager) {
+  public DefaultBoardService(BoardDao boardDao) {
     this.boardDao = boardDao;
-    this.txManager = txManager;
   }
 
+  @Transactional // 이 메서드는 트랜잭션 상태에서 실행하라고 지정
   @Override
   public int add(Board board) throws Exception {
-    DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-    def.setName("tx1");
-    def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-    TransactionStatus status = txManager.getTransaction(def);
-
-    try {
-      int count = boardDao.insert(board);
-      if (board.getAttachedFiles().size() > 0) {
-        boardDao.insertFiles(board);
-      }
-      txManager.commit(status);
-      return count;
-
-    } catch (Exception e) {
-      txManager.rollback(status);
-      throw e;
+    int count = boardDao.insert(board);
+    if (board.getAttachedFiles().size() > 0) {
+      boardDao.insertFiles(board);
     }
+    return count;
   }
 
   @Override
   public List<Board> list(int category) throws Exception {
-    return null;
+    return boardDao.findAll(category);
   }
 
   @Override
@@ -53,45 +36,27 @@ public class DefaultBoardService implements BoardService {
     return boardDao.findBy(boardNo);
   }
 
+  @Transactional
   @Override
   public int update(Board board) throws Exception {
-    return 0;
+    int count = boardDao.update(board);
+    if (count > 0 && board.getAttachedFiles().size() > 0) {
+      boardDao.insertFiles(board);
+    }
+    return count;
   }
 
+  @Transactional
   @Override
   public int delete(int boardNo) throws Exception {
-    DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-    def.setName("tx1");
-    def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-    TransactionStatus status = txManager.getTransaction(def);
-
-    try {
-      boardDao.deleteFiles(boardNo);
-      int count = boardDao.delete(boardNo);
-      txManager.commit(status);
-      return count;
-
-    } catch (Exception e) {
-      txManager.rollback(status);
-      throw e;
-    }
+    boardDao.deleteFiles(boardNo);
+    return boardDao.delete(boardNo);
   }
 
+  @Transactional
   @Override
   public int increaseViewCount(int boardNo) throws Exception {
-    DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-    def.setName("tx1");
-    def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-    TransactionStatus status = txManager.getTransaction(def);
-
-    try {
-      int count = boardDao.updateCount(boardNo);
-      txManager.commit(status);
-      return count;
-    } catch (Exception e) {
-      txManager.rollback(status);
-      throw e;
-    }
+    return boardDao.updateCount(boardNo);
   }
 
   @Override
@@ -101,6 +66,6 @@ public class DefaultBoardService implements BoardService {
 
   @Override
   public int deleteAttachedFile(int fileNo) throws Exception {
-    return 0;
+    return boardDao.deleteFile(fileNo);
   }
 }

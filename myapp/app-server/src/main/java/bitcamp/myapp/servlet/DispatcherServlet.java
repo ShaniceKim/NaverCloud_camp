@@ -27,10 +27,10 @@ public class DispatcherServlet extends HttpServlet {
     System.out.println("DispatcherServlet.init() 호출됨!");
     iocContainer = new AnnotationConfigApplicationContext(AppConfig.class, NcpConfig.class);
 
-//    String[] names = iocContainer.getBeanDefinitionNames();
-//    for (String name : names) {
-//      System.out.printf("=> %s\n", iocContainer.getBean(name).getClass().getName());
-//    }
+    String[] names = iocContainer.getBeanDefinitionNames();
+    for (String name : names) {
+      System.out.printf("=> %s\n", iocContainer.getBean(name).getClass().getName());
+    }
 
   }
 
@@ -52,9 +52,11 @@ public class DispatcherServlet extends HttpServlet {
       } else {
         request.getRequestDispatcher(viewUrl).include(request, response);
       }
+
     } catch (Exception e) {
       // 페이지 컨트롤러 실행 중 오류가 발생했다면, 예외를 던진다.
       throw new ServletException("요청 처리 중 오류 발생!", e);
     }
+
   }
 }
