@@ -15,7 +15,7 @@
 
 <h1>회원 목록</h1>
 <div style='margin:5px;'>
-<a href='add'>새 회원</a>
+<a href='form'>새 회원</a>
 </div>
 <table border='1'>
 <thead>
@@ -31,7 +31,7 @@
         <td>${member.email}</td>
     </tr>
 </c:forEach>
-
+</tbody>
 </table>
 <a href='/'>메인</a>
 
