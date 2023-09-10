@@ -711,3 +711,7 @@ https://whaleon.us/o/CSrtk1/001aa759f29c46b985e32dd8562f594a
 - Spring WebMVC 사용법(계속)
 - 프로젝트 실습
   - 80. Spring WebMVC 활용하기(계속)
+    
+## 웨일즈 화상회의
+
+https://whaleon.us/o/CSrtk1/001aa759f29c46b985e32dd8562f594a
