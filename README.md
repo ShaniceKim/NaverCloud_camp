@@ -741,7 +741,7 @@ https://whaleon.us/o/CSrtk1/001aa759f29c46b985e32dd8562f594a
 
 ### 80일(9/14,목)
 
-- Thymeleaf 사용법(계속)
+- Thymeleaf 사용법
 - 프로젝트 실습
   - 82. 뷰 템플릿 기술을 Thymeleaf 로 교체하기(계속)
 - git branch 사용법
